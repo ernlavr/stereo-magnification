@@ -18,7 +18,7 @@ import collections
 import math
 import os.path
 import tensorflow as tf
-import utils
+import stereomag.utils as utils
 
 
 class ViewSequence(

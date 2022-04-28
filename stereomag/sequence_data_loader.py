@@ -20,8 +20,8 @@ from __future__ import division
 import os.path
 import tensorflow as tf
 from tensorflow import flags
-import datasets
-import loader
+import stereomag.datasets
+import stereomag.loader as loader
 
 FLAGS = flags.FLAGS
 

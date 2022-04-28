@@ -28,7 +28,7 @@ from multiprocessing.dummy import Pool
 from tensorflow import app
 
 flags = tf.app.flags
-flags.DEFINE_string('result_root', '/tmp/results',
+flags.DEFINE_string('result_root', '\\tmp\\results',
                     'Root directory for writing results.')
 flags.DEFINE_string('model_name', 'siggraph_model_20180701',
                     'Name of model to evaluate.')
@@ -43,12 +43,18 @@ def load_image(imfile):
   raw_im = pil.open(fh)
   return np.array(raw_im, dtype=np.float32)
 
+def mkdir(path):
+  from pathlib import Path
+  Path(path).mkdir(parents=True, exist_ok=True)
+
 
 def collect_examples(result_root, model_names, data_split):
   """Find examples that exist for all models."""
   counts = {}
   for model_name in model_names:
-    examples = os.listdir(os.path.join(result_root, model_name, data_split))
+    path = os.path.join(result_root, model_name, data_split)
+    mkdir(path)
+    examples = os.listdir(path)
     for e in examples:
       counts[e] = counts.get(e, 0) + 1
   result = [k for k, v in counts.items() if v == len(model_names)]

@@ -21,7 +21,7 @@ additional options.
 import os.path
 import tensorflow as tf
 from tensorflow import flags
-import datasets
+import stereomag.datasets as datasets
 
 flags.DEFINE_integer('epochs', -1,
                      'Epochs of training data, or -1 to continue indefinitely.')
